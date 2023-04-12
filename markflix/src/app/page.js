@@ -1,7 +1,7 @@
 import { MainContainer } from './components/MainContainer';
+const API_KEY = process.env.API_KEY; /* API KEY */
 
 export default async function Home() {
-  const API_KEY = process.env.API_KEY; /* API KEY */
   const res = await fetch(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=1`,
     { next: { revalidate: 10000 } }

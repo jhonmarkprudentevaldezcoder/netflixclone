@@ -1,31 +1,12 @@
-'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { AiOutlineMenuUnfold } from 'react-icons/ai';
-import { TbMenuOrder } from 'react-icons/tb';
 
 export const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
   return (
-    <div
-      className={` ${
-        darkMode ? 'bg-stone-950' : 'bg-white'
-      } transition ease-in-out delay-75 duration-300`}
-    >
+    <div className="bg-stone-950 transition ease-in-out delay-75 duration-300">
       <div className="w-full mx-auto flex content-center justify-between px-10 ">
         <div className="py-4 flex gap-4 px-10">
           <div className="text-teal-300 ">
-            <span
-              className="cursor-pointer "
-              onClick={() => {
-                if (darkMode == false) {
-                  setDarkMode(true);
-                } else {
-                  setDarkMode(false);
-                }
-              }}
-            >
+            <span className="cursor-pointer ">
               <h3 className="text-red-600 text-2xl font-bold">MARKFLIX</h3>
             </span>
           </div>
@@ -41,46 +22,7 @@ export const Navbar = () => {
             JOIN US
           </Link>
         </div>
-
-        {showMenu ? (
-          <div className="flex mobile-button md:hidden text-red-800 py-4 text-4xl cursor-pointer">
-            <TbMenuOrder
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            />
-          </div>
-        ) : (
-          <div className="flex mobile-button md:hidden text-red-800 py-4 text-4xl cursor-pointer">
-            <AiOutlineMenuUnfold
-              onClick={() => {
-                setShowMenu(true);
-              }}
-            />
-          </div>
-        )}
       </div>
-
-      {showMenu ? (
-        <div className="mobile-view md:hidden">
-          <ul className="text-teal-200 px-10 flex-col gap-5 ">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        ''
-      )}
     </div>
   );
 };
