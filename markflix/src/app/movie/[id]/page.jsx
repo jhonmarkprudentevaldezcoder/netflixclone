@@ -1,11 +1,18 @@
-import React from 'react';
-import { Card } from './Card/Card';
 import Link from 'next/link';
+import React from 'react';
 
-export const MainContainer = ({ results }) => {
+async function getMovie(movieId) {
+  const res = await fetch(`
+    https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}}`);
+  return await res.json();
+}
+
+const page = async ({ params }) => {
+  const movieId = params.id;
+  const movie = await getMovie(movieId);
   return (
     <div>
-      <div className="px-5 py-10 md:flex  flex-col">
+      <div className="px-5 py-10 md:flex  flex-col bg-stone-800">
         <div className="container  md:w-1/2 lg:w-1/3 ">
           <div className="p-4 text-white">
             <h2 className="font-bold text-2xl md:text-4xl lg:text-6xl ">
@@ -40,12 +47,12 @@ export const MainContainer = ({ results }) => {
           </ul>
 
           <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols- 2xl:grid-cols-6 mx-auto py-4">
-            {results.map((result) => (
-              <Card key={result.id} result={result} />
-            ))}
+            {movie.title || movie.name}
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default page;

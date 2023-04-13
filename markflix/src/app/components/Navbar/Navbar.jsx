@@ -7,7 +7,9 @@ export const Navbar = () => {
         <div className="py-4 flex gap-4 px-10">
           <div className="text-teal-300 ">
             <span className="cursor-pointer ">
-              <h3 className="text-red-600 text-2xl font-bold">MARKFLIX</h3>
+              <Link href="/" className="text-red-600 text-2xl font-bold">
+                MARKFLIX
+              </Link>
             </span>
           </div>
         </div>
